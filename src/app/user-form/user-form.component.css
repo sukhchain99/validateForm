@@ -1,3 +1,9 @@
+h1 {
+    font-weight: bold;
+    color: palegoldenrod;
+    font-size: 32px;
+  }
+
 form {
     margin-top: 10%;
     margin-left: 35%;
@@ -30,4 +36,8 @@ input[type = submit] {
     display: block;
     border: 1px solid #B3A9A9;
     box-sizing: border-box;
+}
+
+select {
+    width: 100px;
 }

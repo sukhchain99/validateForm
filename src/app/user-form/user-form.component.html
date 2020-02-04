@@ -1,4 +1,6 @@
 <form #userForm="ngForm" novalidate (ngSubmit)="onSubmit(userForm)" [ngFormOptions]="{updateOn: 'blur'}">
+    <h1>User Form</h1>
+    
     Name: <br/>
     <input type="text" name="username" #username="ngModel" ngModel pattern="[a-zA-Z]*$" required>
     <span *ngIf="username.errors && username.errors.required && userForm.submitted" class="error">
@@ -20,13 +22,31 @@
 
 
     Date of Birth: (dd/mm/yyyy)<br/>
-    <input type="text" name="DOB" #DOB="ngModel" ngModel pattern="(((0|1)[0-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/((19|20)\d\d))$" required>
-    <span *ngIf="DOB.errors && DOB.errors.required && userForm.submitted" class="error">
-        Date of Birth is required! <br/>
+    <select name="date" required #date="ngModel" ngModel>
+        <option *ngFor="let date of dates" [ngValue]="date">
+            {{ date.value }}
+        </option>
+    </select>
+    <select name="month" required #month="ngModel" ngModel>
+        <option *ngFor="let month of months" [ngValue]="month">
+            {{ month }}
+        </option>
+    </select>
+    <select name="year" required #year="ngModel" ngModel>
+        <option *ngFor="let year of years;"  [ngValue]="year">
+            {{year}}
+        </option>
+    </select>
+    <!-- Errors -->
+    <span *ngIf="date.errors && date.errors.required && userForm.submitted" class="error">
+        Date is required! <br/>
     </span> <br/>
-    <span *ngIf="DOB.errors && DOB.errors.pattern && userForm.submitted" class="error">
-        Invalid Format <br/>
-    </span>
+    <span *ngIf="month.errors && month.errors.required && userForm.submitted" class="error">
+        Month is required! <br/>
+    </span> <br/>
+    <span *ngIf="year.errors && year.errors.required && userForm.submitted" class="error">
+        Year is required! <br/>
+    </span> <br/>
 
 
     <input type="radio" name="gender" value="male" #gender="ngModel" ngModel required> : Male <br/>
